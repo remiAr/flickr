@@ -1,0 +1,4 @@
+<div><input type="number" [(ngModel)]="pictureLimite"></div>
+<span *ngFor="let item of object; let i = index">
+    <img src="https://farm{{item.farm}}.staticflickr.com/{{item.server}}/{{item.id}}_{{item.secret}}_m.jpg"/>
+</span>
