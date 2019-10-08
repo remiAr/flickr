@@ -25,11 +25,9 @@ export class MainComponent implements OnInit {
   { "id": "48820011157", "owner": "79881035@N08", "secret": "0625902f4d", "server": "65535", "farm": 66, "title": "DSC_0082", "ispublic": 1, "isfriend": 0, "isfamily": 0 },
   { "id": "48819857896", "owner": "79881035@N08", "secret": "f4db9462d9", "server": "65535", "farm": 66, "title": "DSC_0078", "ispublic": 1, "isfriend": 0, "isfamily": 0 },
   { "id": "48820009502", "owner": "79881035@N08", "secret": "967518b753", "server": "65535", "farm": 66, "title": "DSC_0077", "ispublic": 1, "isfriend": 0, "isfamily": 0 }];
-  public pictureLimite = 5;
   constructor() { }
 
   ngOnInit() {
-    
   }
 
 }
