@@ -14,12 +14,12 @@
         </div>
         <div class="col-md-2 pt-3">
             <div class="form-group">
-            Date minimum d'upload<input id="inputState" class="form-control" type="date">
+            Date minimum d'upload<input id="inputState" [(ngModel)]="minDateUpload" class="form-control" type="date">
             </div>
         </div>
         <div class="col-md-2 pt-3">
             <div class="form-group">
-                Date Maximum d'upload <input id="inputState" class="form-control" type="date">
+                Date Maximum d'upload <input id="inputState" [(ngModel)]="maxDateUpload" class="form-control" type="date">
             </div>
         </div>
         <div class="col-md-2 pt-3">
@@ -29,16 +29,48 @@
         </div>
         <div class="col-md-2 pt-3">
             <div class="form-group">
-                Nombre de résultat par page : <input type="number" [(ngModel)]="limitePage"  class="form-control">
+                Nombre de résultat par page : <input type="number" [(ngModel)]="limitePage" class="form-control">
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 pt-3">
+            <div class="form-group">
+                Masquer contenu sensible <input type="checkbox" (click)="setContentNSFW()" class="form-control" checked>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row align-items-center justify-content-center">
+        <div>
             <button type="button" (click)="onClickMe()" class="btn btn-primary btn-block">Search</button>
         </div>
     </div>
 </div>
 
+<div style="margin: auto; width: 75%; text-align: center; padding-top: 20px;">
+    <div *ngIf="imageClicked" style="position: relative; display: block; margin: auto; width: 100%; height: 75%; background-color: lightgray;">
+            <img src="../assets/rightArrow.png" width="100" style="position: absolute;
+            display: block;
+            right: 0;" (click)="nextPicture()"/>
+        <img src="../assets/leftArrow.png" width="100" style="position: absolute;
+        display: block;
+        left: 0;"  (click)="prevPicture()"/>
+        <img src="https://farm{{imageClicked.farm}}.staticflickr.com/{{imageClicked.server}}/{{imageClicked.id}}_{{imageClicked.secret}}.jpg"/>
+        <div><b><i>Date d'upload :</i></b> {{currentPicture.dateUpload}}</div>
+        <div><b><i>Date de prise de vue :</i></b> {{currentPicture.dateTaken}}</div>
+        <div *ngIf="currentPicture.location != ''"><b><i>Localisation :</i></b> {{currentPicture.location}}</div>
+        <div><b><i>Utilisateur :</i></b> {{currentPicture.ownerUsername}}</div>
+        <div *ngIf="currentPicture.tags.length > 0"><b><i>Tags de cette photo :</i></b>
+            <div *ngFor="let item of currentPicture.tags">
+                
+                <li>{{item.raw}}</li>
+            </div>
+        </div>
+        
 
-<span *ngFor="let item of object">
-    <img src="https://farm{{item.farm}}.staticflickr.com/{{item.server}}/{{item.id}}_{{item.secret}}_m.jpg" class="img-thumbnail rounded "/>
-</span>
+    </div>
+    <span *ngFor="let item of object; let i = index;">
+        <img src="https://farm{{item.farm}}.staticflickr.com/{{item.server}}/{{item.id}}_{{item.secret}}_m.jpg" class="img-thumbnail rounded " (click)="openPicture(item, i)"/>
+    </span>
+</div>
+
+
